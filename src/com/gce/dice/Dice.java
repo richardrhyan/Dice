@@ -1,6 +1,7 @@
 package com.gce.dice;
 
 import java.util.Arrays;
+import java.util.StringJoiner;
 
 public class Dice {
 	Die[] dice;
@@ -56,14 +57,12 @@ public class Dice {
 	
 	// TODO Rewrite this using a stream
 	public String toString() {
-		String s = "[ ";
-		for (int i = 0; i < dice.length; i++) {
-			if (!s.equals("[ "))
-				s += ", ";
-			s += dice[i].value();
-		}
-		s += " ]";
-		return s;				
+		// Example from: https://docs.oracle.com/javase/8/docs/api/java/util/StringJoiner.html
+		List<Die> myDice = Arrays.asList(dice);
+		String commaSeparated = myDice.stream()
+			.map(i -> i.toString())
+			.collect(Collectors.joining(", ");
+		return commaSeparated;				
 	}
 	
 	public static void main (String[] args) {
