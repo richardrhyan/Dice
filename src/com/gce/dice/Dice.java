@@ -1,7 +1,8 @@
 package com.gce.dice;
 
 import java.util.Arrays;
-import java.util.StringJoiner;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Dice {
 	Die[] dice;
@@ -55,19 +56,12 @@ public class Dice {
 		return dice;
 	}
 	
-	// This is a test comment, as the method has been modified and needs no further modification. XXxxXX
 	public String toString() {
 		// Example from: https://docs.oracle.com/javase/8/docs/api/java/util/StringJoiner.html
 		List<Die> myDice = Arrays.asList(dice);
 		String commaSeparated = myDice.stream()
 			.map(i -> i.toString())
-			.collect(Collectors.joining(", ");
+			.collect(Collectors.joining(", "));
 		return commaSeparated;				
-	}
-	
-	public static void main (String[] args) {
-		Dice d = new Dice(new Die(6), new Die(6));
-		d.roll();
-		System.out.println(d.toString() + " " + d.value());
 	}
 }
