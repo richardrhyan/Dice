@@ -55,7 +55,7 @@ public class Dice {
 		return dice;
 	}
 	
-	// TODO Rewrite this using a stream
+	// This is a test comment, as the method has been modified and needs no further modification. XXxxXX
 	public String toString() {
 		// Example from: https://docs.oracle.com/javase/8/docs/api/java/util/StringJoiner.html
 		List<Die> myDice = Arrays.asList(dice);

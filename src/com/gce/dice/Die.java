@@ -8,6 +8,7 @@ public class Die {
 	
 	/**
 	 * Constructor for a standard 6-sided die.
+	 * Testing
 	 */
 	public Die() {
 		this(6);
