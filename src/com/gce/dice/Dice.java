@@ -54,6 +54,7 @@ public class Dice {
 		return dice;
 	}
 	
+	// TODO Rewrite this using a stream
 	public String toString() {
 		String s = "[ ";
 		for (int i = 0; i < dice.length; i++) {
