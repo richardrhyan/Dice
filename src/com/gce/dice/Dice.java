@@ -1,20 +1,20 @@
 package com.gce.dice;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Dice {
-	Die[] dice;
+	ArrayList<Die> dice = new ArrayList<>();
 	
 	/**
 	 * Constructor for a group of dice, the array int[] determines the number of sides of each die.
 	 * @param int sides
 	 */
 	public Dice(int ... numberOfSides) {
-		dice = new Die[numberOfSides.length];
 		for (int i = 0; i < numberOfSides.length; i++)
-			dice[i] = new Die(numberOfSides[i]);
+			dice.add(new Die(numberOfSides[i]));
 	}
 	
 	/**
@@ -22,7 +22,58 @@ public class Dice {
 	 * @param Die dice
 	 */
 	public Dice(Die ... dice) {
+		for (int i = 0; i < dice.length; i++)
+			this.dice.add(dice[i]);
+	}
+	
+	/**
+	 * Constructor for a group of dice, the ArrayList determines the dice.
+	 * @param ArrayList<Dice> dice
+	 */
+	public Dice(ArrayList<Die> dice) {
 		this.dice = dice;
+	}
+	
+	/**
+	 * Add a die to the Dice
+	 * @param int numberOfSides
+	 */
+	public void add(int numberOfSides) {
+		this.add(new Die(numberOfSides));
+	}
+	
+	/**
+	 * Add a Die to the Dice
+	 * @param Die die
+	 */
+	public void add(Die die) {
+		dice.add(die);
+	}
+	
+	/**
+	 * Removes the first die with numberOfSides
+	 * @param int numberOfSides
+	 */
+	public void remove(int numberOfSides) {
+		for (Die d : dice) {
+			if (d.sides() == numberOfSides) {
+				dice.remove(d);
+				return;
+			}
+		}
+	}
+	
+	/**
+	 * Removes the first die with smae number of sides as Die
+	 * @param Die die
+	 */
+	public void remove(Die die) {
+		for (Die d : dice) {
+			if (d.sides() == die.sides()) {
+				dice.remove(d);
+				return;
+			}
+		}
 	}
 	
 	/**
@@ -42,7 +93,7 @@ public class Dice {
 	 * @return int
 	 */
 	public int value() {
-		int sum = Arrays.asList(dice).stream()
+		int sum = dice.stream()
 				.mapToInt(e -> e.value())
 				.reduce(0, Integer::sum);
 		return sum;
@@ -52,14 +103,13 @@ public class Dice {
 	 * Returns an array of all the dice.
 	 * @return Die[]
 	 */
-	public Die[] getDice() {
+	public ArrayList<Die> getDice() {
 		return dice;
 	}
 	
 	public String toString() {
 		// Example from: https://docs.oracle.com/javase/8/docs/api/java/util/StringJoiner.html
-		List<Die> myDice = Arrays.asList(dice);
-		String commaSeparated = myDice.stream()
+		String commaSeparated = dice.stream()
 			.map(i -> i.toString())
 			.collect(Collectors.joining(", "));
 		return commaSeparated;				
